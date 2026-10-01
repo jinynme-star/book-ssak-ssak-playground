@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>북싹북싹 놀터 | 책이랑 놀이랑, 우리 아이 쑥쑥 자라는 곳</title>
+  <meta name="description" content="책이랑 놀이랑, 우리 아이 쑥쑥 자라는 곳! 0세부터 7세까지 엄마와 아이가 함께 교감하는 그림책 읽기 팁과 오감·미술 독후활동 가이드 플랫폼">
+  <meta name="keywords" content="북싹북싹놀터, 독후활동, 그림책추천, 영유아놀이, 오감놀이, 미술놀이, 그림책육아">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="북싹북싹 놀터">
+  <meta property="og:description" content="책이랑 놀이랑, 우리 아이 쑥쑥 자라는 곳">
+  <meta property="og:image" content="./assets/hero.jpg">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <span><i class="fa-solid fa-gift"></i> 이번 주 신규 업데이트: <strong>[3~4세] 가을 낙엽 오감놀이 레시피 5선</strong></span>
+      <a href="#activities" class="top-bar-link">지금 확인하기 <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container header-container">
+      <a href="#" class="logo">
+        <div class="logo-icon-img-wrap">
+          <img src="./assets/logo.png" alt="북싹북싹 놀터 로고" class="logo-img">
+        </div>
+        <div class="logo-text">
+          <span class="brand-title">북싹북싹 놀터</span>
+          <span class="brand-sub">책이랑 놀이랑, 우리 아이 쑥쑥 자라는 곳</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="mainNav">
+        <ul>
+          <li><a href="#age-guide" class="nav-link active">연령별 가이드</a></li>
+          <li><a href="#books" class="nav-link">그림책 추천</a></li>
+          <li><a href="#activities" class="nav-link">독후 활동</a></li>
+          <li><a href="#community" class="nav-link">커뮤니티</a></li>
+          <li><a href="#about" class="nav-link">소개</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="searchInput" placeholder="그림책 제목, 주연령, 놀이 키워드 검색..." aria-label="그림책 및 독후활동 검색">
+          <button class="search-clear-btn" id="searchClearBtn" style="display:none;" aria-label="검색어 지우기"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <button class="btn btn-primary primary-action-btn" id="openPostModalBtn">
+          <i class="fa-solid fa-pen-to-square"></i> <span>놀이 공유</span>
+        </button>
+        <button class="mobile-toggle-btn" id="mobileToggleBtn" aria-label="메뉴 열기">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <i class="fa-solid fa-seedling"></i> 책이랑 놀이랑, 우리 아이 쑥쑥 자라는 곳
+          </div>
+          <h1 class="hero-title">
+            책이랑 <span>놀이랑</span>,<br>
+            우리 아이 <span>쑥쑥 자라는 곳</span>
+          </h1>
+          <p class="hero-description">
+            어떤 책을 어떻게 읽어줘야 할지 고민이신가요?<br>
+            연령별 맞춤 그림책 추천부터 집에서 바로 해볼 수 있는 쉬운 오감·미술 독후활동 레시피까지 한곳에서 만나보세요.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#age-guide" class="btn btn-primary btn-lg">
+              <i class="fa-solid fa-shapes"></i> 연령별 그림책 보기
+            </a>
+            <a href="#books" class="btn btn-secondary btn-lg">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> 오늘의 놀이 레시피
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number" id="statBooksCount">350+</span>
+              <span class="stat-label">큐레이션 그림책</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number" id="statPlayCount">520+</span>
+              <span class="stat-label">독후 활동 아이디어</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">99.4%</span>
+              <span class="stat-label">엄마 만족도</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-image-wrapper">
+            <img src="./assets/hero.jpg" alt="엄마와 아이가 함께 그림책을 읽는 따뜻한 모습" class="hero-img">
+            <div class="hero-floating-card card-top">
+              <div class="floating-icon"><i class="fa-solid fa-palette"></i></div>
+              <div class="floating-text">
+                <strong>오늘의 인기 독후활동</strong>
+                <span>구름 솜 떼어붙이기 & 오감놀이</span>
+              </div>
+            </div>
+            <div class="hero-floating-card card-bottom">
+              <div class="floating-avatar">
+                <i class="fa-solid fa-child-reaching"></i>
+              </div>
+              <div class="floating-text">
+                <strong>"아이 반응이 대박이에요!"</strong>
+                <span>★ ★ ★ ★ ★ (3세 민준맘)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Filter Tags Bar -->
+    <section class="quick-tags-section">
+      <div class="container">
+        <div class="quick-tags-wrapper">
+          <span class="tags-title"><i class="fa-solid fa-fire"></i> 자주 찾는 키워드:</span>
+          <div class="tags-list">
+            <button class="tag-btn" data-tag="all">전체</button>
+            <button class="tag-btn" data-tag="0-12m">#0~12개월</button>
+            <button class="tag-btn" data-tag="12-24m">#12~24개월</button>
+            <button class="tag-btn" data-tag="3-4y">#3~4세</button>
+            <button class="tag-btn" data-tag="5-7y">#5~7세</button>
+            <button class="tag-btn" data-tag="sensory">#오감놀이</button>
+            <button class="tag-btn" data-tag="art">#미술놀이</button>
+            <button class="tag-btn" data-tag="emotion">#감정표현</button>
+            <button class="tag-btn" data-tag="bedtime">#잠자리독서</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Age Guide Section -->
+    <section class="age-section section-padding" id="age-guide">
+      <div class="container">
+        <div class="section-header center">
+          <div class="sub-heading"><i class="fa-solid fa-child"></i> Age Specific Guide</div>
+          <h2 class="section-title">우리 아이 연령별 그림책 & 놀이 가이드</h2>
+          <p class="section-subtitle">아이의 발달 단계에 맞는 독서 방식과 재미있는 연계 놀이를 선택해 보세요.</p>
+        </div>
+
+        <div class="age-tabs-grid">
+          <!-- Tab 1: 0~12 Months -->
+          <div class="age-card active" data-age="0-12m">
+            <div class="age-card-header">
+              <span class="age-badge">Step 1</span>
+              <div class="age-icon-box bg-sage"><i class="fa-solid fa-baby"></i></div>
+            </div>
+            <h3 class="age-range">0 ~ 12개월</h3>
+            <p class="age-target">감각 탐색 & 시각·청각 자극 단계</p>
+            <ul class="age-features">
+              <li><i class="fa-solid fa-check"></i> 선명한 대비의 헝겊책/보드북</li>
+              <li><i class="fa-solid fa-check"></i> 촉감 감각 자극 및 의성어 리듬감</li>
+              <li><i class="fa-solid fa-check"></i> 부모의 따뜻한 목소리 스킨십</li>
+            </ul>
+            <div class="age-card-footer">
+              <span class="recommend-count">추천 도서 24권</span>
+              <button class="age-select-btn">탐색하기 <i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Tab 2: 12~24 Months -->
+          <div class="age-card" data-age="12-24m">
+            <div class="age-card-header">
+              <span class="age-badge">Step 2</span>
+              <div class="age-icon-box bg-peach"><i class="fa-solid fa-hands-holding-child"></i></div>
+            </div>
+            <h3 class="age-range">12 ~ 24개월</h3>
+            <p class="age-target">어휘 폭발 & 어휘 모방 단계</p>
+            <ul class="age-features">
+              <li><i class="fa-solid fa-check"></i> 반복적인 언어 및 사물 인지 그림책</li>
+              <li><i class="fa-solid fa-check"></i> 손가락 소근육 사용 조작북</li>
+              <li><i class="fa-solid fa-check"></i> 신체 움직임 연계 율동 놀이</li>
+            </ul>
+            <div class="age-card-footer">
+              <span class="recommend-count">추천 도서 38권</span>
+              <button class="age-select-btn">탐색하기 <i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Tab 3: 3~4 Years -->
+          <div class="age-card" data-age="3-4y">
+            <div class="age-card-header">
+              <span class="age-badge">Step 3</span>
+              <div class="age-icon-box bg-terracotta"><i class="fa-solid fa-face-smile-beam"></i></div>
+            </div>
+            <h3 class="age-range">3 ~ 4세</h3>
+            <p class="age-target">상상력 & 감정 표현 만발 단계</p>
+            <ul class="age-features">
+              <li><i class="fa-solid fa-check"></i> 이야기 서사가 있는 생활습관/감정 책</li>
+              <li><i class="fa-solid fa-check"></i> 클레이, 물감 등 확장 미술 독후활동</li>
+              <li><i class="fa-solid fa-check"></i> 아이의 느낌 질문 유도 및 대화</li>
+            </ul>
+            <div class="age-card-footer">
+              <span class="recommend-count">추천 도서 56권</span>
+              <button class="age-select-btn">탐색하기 <i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Tab 4: 5~7 Years -->
+          <div class="age-card" data-age="5-7y">
+            <div class="age-card-header">
+              <span class="age-badge">Step 4</span>
+              <div class="age-icon-box bg-cream"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            </div>
+            <h3 class="age-range">5 ~ 7세</h3>
+            <p class="age-target">창의적 사고 & 사회성·탐구 단계</p>
+            <ul class="age-features">
+              <li><i class="fa-solid fa-check"></i> 자연과학, 사회성, 창의 철학 그림책</li>
+              <li><i class="fa-solid fa-check"></i> 역할극, 만들기, 나만의 미니북 제작</li>
+              <li><i class="fa-solid fa-check"></i> 문제 해결 및 느낀점 토론 읽기</li>
+            </ul>
+            <div class="age-card-footer">
+              <span class="recommend-count">추천 도서 62권</span>
+              <button class="age-select-btn">탐색하기 <i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Picture Book & Activity Cards Section -->
+    <section class="books-section section-padding bg-light" id="books">
+      <div class="container">
+        <div class="section-header-flex">
+          <div>
+            <div class="sub-heading"><i class="fa-solid fa-book-bookmark"></i> Curated Books & Play</div>
+            <h2 class="section-title">추천 그림책 & 독후 활동 레시피</h2>
+          </div>
+          
+          <div class="category-filter-pills" id="categoryFilter">
+            <button class="filter-pill active" data-cat="all">전체보기</button>
+            <button class="filter-pill" data-cat="sensory"><i class="fa-solid fa-hand-sparkles"></i> 오감/촉감</button>
+            <button class="filter-pill" data-cat="art"><i class="fa-solid fa-paint-brush"></i> 미술/만들기</button>
+            <button class="filter-pill" data-cat="emotion"><i class="fa-solid fa-face-laugh-beam"></i> 감정/사회성</button>
+            <button class="filter-pill" data-cat="language"><i class="fa-solid fa-comments"></i> 언어/말놀이</button>
+          </div>
+        </div>
+
+        <!-- Book Cards Grid Container -->
+        <div class="books-grid" id="booksGrid">
+          <!-- Cards dynamically injected via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Activity Gallery / Spotlight Section -->
+    <section class="activities-spotlight-section section-padding" id="activities">
+      <div class="container">
+        <div class="spotlight-banner">
+          <div class="spotlight-content">
+            <span class="spotlight-tag"><i class="fa-solid fa-star"></i> 이번 주 인기 엄마표 놀이</span>
+            <h2>"자연물과 함께하는 감성 오감 놀이"</h2>
+            <p>가을철 떨어진 알록달록 낙엽과 아이 안전 클레이를 활용해 아기 곰의 숲속 산책 장면을 만들어봐요!</p>
+            <div class="spotlight-meta">
+              <span><i class="fa-regular fa-clock"></i> 소요시간: 약 20분</span>
+              <span><i class="fa-solid fa-wand-sparkles"></i> 난이도: 쉬움 (★☆☆)</span>
+              <span><i class="fa-solid fa-cubes"></i> 준비물: 클레이, 낙엽, 아이스크림 막대</span>
+            </div>
+            <button class="btn btn-primary" id="spotlightDetailBtn">
+              <i class="fa-solid fa-book-open"></i> 놀이 도안 & 가이드 보기
+            </button>
+          </div>
+          <div class="spotlight-media">
+            <img src="./assets/activity1.jpg" alt="낙엽과 클레이를 활용한 엄마표 오감 놀이" class="spotlight-img">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community-section section-padding bg-light" id="community">
+      <div class="container">
+        <div class="section-header-flex">
+          <div>
+            <div class="sub-heading"><i class="fa-solid fa-comments"></i> Mom's Community</div>
+            <h2 class="section-title">엄마들의 생생한 놀이 후기 & 인증샷</h2>
+            <p class="section-subtitle">오늘 아이와 함께한 그림책 육아 이야기를 자유롭게 나눠보세요.</p>
+          </div>
+          <button class="btn btn-secondary" id="writePostBtn">
+            <i class="fa-solid fa-camera"></i> 나도 인증샷 올리기
+          </button>
+        </div>
+
+        <div class="community-grid" id="communityGrid">
+          <!-- Community post cards rendered by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section section-padding" id="about">
+      <div class="container">
+        <div class="about-card">
+          <div class="about-content">
+            <span class="sub-heading"><i class="fa-solid fa-seedling"></i> Our Slogan & Philosophy</span>
+            <h2>"책이랑 놀이랑, 우리 아이 쑥쑥 자라는 곳"</h2>
+            <p>
+              '북싹북싹 놀터'는 비싼 교구나 거창한 준비물 없이도,<br>
+              집에 있는 간단한 재료와 그림책 한 권으로 아이와 깊이 교감할 수 있도록 돕는 따뜻한 가이드 공간입니다.
+            </p>
+            <div class="philosophy-points">
+              <div class="point-box">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <h4>정서적 교감 우선</h4>
+                <p>학습 중심이 아닌 아이의 감정과 흥미를 먼저 읽어주는 읽어주기법을 제안합니다.</p>
+              </div>
+              <div class="point-box">
+                <i class="fa-solid fa-house-chimney-crack"></i>
+                <h4>쉬운 준비물 & 15분 놀이</h4>
+                <p>누구나 5분 안에 준비할 수 있는 직관적인 독후활동 레시피를 제공합니다.</p>
+              </div>
+              <div class="point-box">
+                <i class="fa-solid fa-users"></i>
+                <h4>따뜻한 육아 연대</h4>
+                <p>같은 고민을 하는 엄마들이 서로의 아이디어를 칭찬하고 나눕니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+      <div class="container">
+        <div class="newsletter-box">
+          <div class="newsletter-icon">
+            <i class="fa-solid fa-envelope-open-text"></i>
+          </div>
+          <div class="newsletter-text">
+            <h3>매주 목요일 아침, 주간 놀이 레시피 편지를 보내드려요!</h3>
+            <p>이번 주 추천 그림책 3권과 바로 써먹는 15분 독후활동 도안 무료 배포</p>
+          </div>
+          <form class="newsletter-form" id="newsletterForm">
+            <div class="input-group">
+              <i class="fa-regular fa-envelope"></i>
+              <input type="email" id="newsletterEmail" placeholder="이메일 주소를 입력해 주세요" required>
+            </div>
+            <button type="submit" class="btn btn-primary">구독하기</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon-img-wrap">
+            <img src="./assets/logo.png" alt="북싹북싹 놀터 로고" class="logo-img">
+          </div>
+          <span class="brand-title">북싹북싹 놀터</span>
+        </div>
+        <p class="footer-desc">
+          책이랑 놀이랑, 우리 아이 쑥쑥 자라는 곳 — 그림책 큐레이션 & 오감 독후활동 전문 공간.
+        </p>
+        <div class="sns-links">
+          <a href="#" aria-label="인스타그램"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="네이버 블로그"><i class="fa-solid fa-b"></i></a>
+          <a href="#" aria-label="유튜브"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="카카오톡 채널"><i class="fa-solid fa-comment"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-links-group">
+        <div class="footer-col">
+          <h4>연령별 추천</h4>
+          <ul>
+            <li><a href="#age-guide" data-age-nav="0-12m">0 ~ 12개월 (감각탐색)</a></li>
+            <li><a href="#age-guide" data-age-nav="12-24m">12 ~ 24개월 (말놀이)</a></li>
+            <li><a href="#age-guide" data-age-nav="3-4y">3 ~ 4세 (감정미술)</a></li>
+            <li><a href="#age-guide" data-age-nav="5-7y">5 ~ 7세 (창의탐구)</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>독후활동 테마</h4>
+          <ul>
+            <li><a href="#books" data-cat-nav="sensory">오감 & 촉감 놀이</a></li>
+            <li><a href="#books" data-cat-nav="art">미술 & 만들기 레시피</a></li>
+            <li><a href="#books" data-cat-nav="emotion">감정표현 카드놀이</a></li>
+            <li><a href="#books" data-cat-nav="language">의성어 의태어 말놀이</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>고객지원 & 정책</h4>
+          <ul>
+            <li><a href="#">이용약관</a></li>
+            <li><a href="#"><strong>개인정보처리방침</strong></a></li>
+            <li><a href="#">놀이 도안 저작권 가이드</a></li>
+            <li><a href="#">제휴 및 제보 문의</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 북싹북싹 놀터. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Book & Activity Detail Modal -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal-container">
+      <button class="modal-close" id="closeDetailModalBtn" aria-label="닫기"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-body" id="modalBodyContent">
+        <!-- Content injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Community Post Modal -->
+  <div class="modal-overlay" id="postModal">
+    <div class="modal-container modal-medium">
+      <button class="modal-close" id="closePostModalBtn" aria-label="닫기"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-pen-to-square"></i> 오늘 우리 아이 놀이 후기 작성하기</h3>
+        <p>아이와 함께한 소중한 그림책 독후활동을 다른 엄마들과 공유해보세요!</p>
+      </div>
+      <form class="post-form" id="communityForm">
+        <div class="form-group">
+          <label for="postAuthor">작성자 닉네임 (예: 지한이네)</label>
+          <input type="text" id="postAuthor" placeholder="닉네임을 입력하세요" required>
+        </div>
+        <div class="form-group">
+          <label for="postAge">아이 연령대</label>
+          <select id="postAge" required>
+            <option value="0~12개월">0 ~ 12개월</option>
+            <option value="12~24개월">12 ~ 24개월</option>
+            <option value="3~4세" selected>3 ~ 4세</option>
+            <option value="5~7세">5 ~ 7세</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="postBookTitle">연계 그림책 제목</label>
+          <input type="text" id="postBookTitle" placeholder="예: 구름 속 아기 고양이" required>
+        </div>
+        <div class="form-group">
+          <label for="postTitle">후기 제목</label>
+          <input type="text" id="postTitle" placeholder="예: 손끝으로 느끼는 보들보들 솜 구름 놀이!" required>
+        </div>
+        <div class="form-group">
+          <label for="postContent">상세 내용 및 아이 반응</label>
+          <textarea id="postContent" rows="4" placeholder="놀이 과정과 아이가 특히 즐거워했던 포인트를 들려주세요." required></textarea>
+        </div>
+        <div class="form-group">
+          <label>놀이 사진 선택 (샘플 라이브러리 중 선택)</label>
+          <div class="photo-selector">
+            <label class="photo-opt selected">
+              <input type="radio" name="postPhoto" value="./assets/activity1.jpg" checked>
+              <img src="./assets/activity1.jpg" alt="낙엽과 클레이">
+              <span>낙엽 클레이</span>
+            </label>
+            <label class="photo-opt">
+              <input type="radio" name="postPhoto" value="./assets/activity2.jpg">
+              <img src="./assets/activity2.jpg" alt="수채화 물감">
+              <span>수채화 스탬프</span>
+            </label>
+            <label class="photo-opt">
+              <input type="radio" name="postPhoto" value="./assets/hero.jpg">
+              <img src="./assets/hero.jpg" alt="그림책 읽기">
+              <span>따뜻한 독서</span>
+            </label>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-outline" id="cancelPostBtn">취소</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> 후기 등록하기</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
