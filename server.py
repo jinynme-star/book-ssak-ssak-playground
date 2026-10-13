@@ -216,18 +216,26 @@ class CustomHandler(SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(response_bytes)
 
+# Set UTF-8 encoding for stdout/stderr if possible
+if sys.stdout.encoding != 'utf-8':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:
+        pass
+
 def run():
     server_address = ("", PORT)
     httpd = HTTPServer(server_address, CustomHandler)
-    print(f"==================================================")
-    print(f"🌿 북싹북싹 놀터 로컬 웹 서버 시작")
-    print(f"🔗 접속 주소: http://localhost:{PORT}")
-    print(f"📧 문의 수신: {TARGET_EMAIL} (Resend API 연동됨)")
-    print(f"==================================================")
+    print("==================================================")
+    print("[SERVER] Book Ssak-Ssak Playground Local Server")
+    print(f"[URL] http://localhost:{PORT}")
+    print(f"[INQUIRY TARGET] {TARGET_EMAIL} (Resend API Connected)")
+    print("==================================================")
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
-        print("\n서버를 종료합니다.")
+        print("\nServer shutting down.")
         httpd.server_close()
 
 if __name__ == "__main__":
