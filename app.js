@@ -478,6 +478,206 @@ function initEventListeners() {
       mainNav.classList.toggle("active");
     });
   }
+
+  // Close mobile nav when clicking nav links
+  const navLinks = document.querySelectorAll(".main-nav a");
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      if (mainNav && mainNav.classList.contains("active")) {
+        mainNav.classList.remove("active");
+      }
+    });
+  });
+
+  // 10. FAQ Accordion
+  const faqQuestions = document.querySelectorAll(".faq-question");
+  faqQuestions.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const parentItem = btn.closest(".faq-item");
+      const isExpanded = parentItem.classList.contains("active");
+
+      // Close other open items for clean accordion behavior
+      document.querySelectorAll(".faq-item").forEach(item => {
+        if (item !== parentItem) {
+          item.classList.remove("active");
+          const qBtn = item.querySelector(".faq-question");
+          if (qBtn) qBtn.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      if (isExpanded) {
+        parentItem.classList.remove("active");
+        btn.setAttribute("aria-expanded", "false");
+      } else {
+        parentItem.classList.add("active");
+        btn.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+
+  // 11. Inquiry Type Selector (Chips)
+  const inquiryChips = document.querySelectorAll(".type-chip");
+  inquiryChips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      inquiryChips.forEach(c => c.classList.remove("selected"));
+      chip.classList.add("selected");
+      const radio = chip.querySelector('input[type="radio"]');
+      if (radio) radio.checked = true;
+    });
+  });
+
+  // 12. File Upload Box preview & remove
+  const fileInput = document.getElementById("inquiryFile");
+  const filePlaceholder = document.getElementById("filePlaceholder");
+  const fileUploadedInfo = document.getElementById("fileUploadedInfo");
+  const uploadedFileName = document.getElementById("uploadedFileName");
+  const fileRemoveBtn = document.getElementById("fileRemoveBtn");
+
+  if (fileInput && filePlaceholder && fileUploadedInfo && uploadedFileName) {
+    fileInput.addEventListener("change", (e) => {
+      if (e.target.files && e.target.files.length > 0) {
+        const file = e.target.files[0];
+        uploadedFileName.textContent = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+        filePlaceholder.style.display = "none";
+        fileUploadedInfo.style.display = "flex";
+      }
+    });
+
+    if (fileRemoveBtn) {
+      fileRemoveBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        fileInput.value = "";
+        uploadedFileName.textContent = "";
+        fileUploadedInfo.style.display = "none";
+        filePlaceholder.style.display = "flex";
+      });
+    }
+  }
+
+  // 13. Kakao Chat Link
+  const kakaoChatBtn = document.getElementById("kakaoChatBtn");
+  if (kakaoChatBtn) {
+    kakaoChatBtn.addEventListener("click", () => {
+      showToast("카카오톡 1:1 오픈채팅으로 연결됩니다 (상담시간: 평일 10:00~17:00) 💬");
+    });
+  }
+
+  // 14. Inquiry Modal Open & Close Handlers
+  const inquiryModal = document.getElementById("inquiryModal");
+  const openInquiryModalBtn = document.getElementById("openInquiryModalBtn");
+  const closeInquiryModalBtn = document.getElementById("closeInquiryModalBtn");
+  const cancelInquiryBtn = document.getElementById("cancelInquiryBtn");
+
+  function openInquiryPopup() {
+    if (inquiryModal) inquiryModal.classList.add("active");
+  }
+
+  function closeInquiryPopup() {
+    if (inquiryModal) inquiryModal.classList.remove("active");
+  }
+
+  if (openInquiryModalBtn) {
+    openInquiryModalBtn.addEventListener("click", openInquiryPopup);
+  }
+
+  if (closeInquiryModalBtn) {
+    closeInquiryModalBtn.addEventListener("click", closeInquiryPopup);
+  }
+
+  if (cancelInquiryBtn) {
+    cancelInquiryBtn.addEventListener("click", closeInquiryPopup);
+  }
+
+  if (inquiryModal) {
+    inquiryModal.addEventListener("click", (e) => {
+      if (e.target === inquiryModal) closeInquiryPopup();
+    });
+  }
+
+  // Allow global access if needed
+  window.openInquiryPopup = openInquiryPopup;
+
+  // Open popup when clicking navigation or footer inquiry links
+  document.querySelectorAll('a[href="#inquiry"]').forEach(link => {
+    link.addEventListener("click", () => {
+      openInquiryPopup();
+    });
+  });
+
+  // Global ESC key listener for modals
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeInquiryPopup();
+      const detailModal = document.getElementById("detailModal");
+      const postModal = document.getElementById("postModal");
+      if (detailModal) detailModal.classList.remove("active");
+      if (postModal) postModal.classList.remove("active");
+    }
+  });
+
+  // 15. Inquiry Form Submission
+  const inquiryForm = document.getElementById("inquiryForm");
+  const submitInquiryBtn = document.getElementById("submitInquiryBtn");
+  if (inquiryForm && submitInquiryBtn) {
+    inquiryForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("inquiryName")?.value.trim();
+      const email = document.getElementById("inquiryEmail")?.value.trim();
+      const title = document.getElementById("inquiryTitle")?.value.trim();
+      const message = document.getElementById("inquiryMessage")?.value.trim();
+      const agreement = document.getElementById("inquiryAgreement")?.checked;
+
+      if (!name || !email || !title || !message) {
+        showToast("필수 입력 항목을 모두 작성해 주세요.");
+        return;
+      }
+
+      if (!agreement) {
+        showToast("개인정보 수집 및 이용에 동의해 주세요.");
+        return;
+      }
+
+      // Button Loading State
+      submitInquiryBtn.disabled = true;
+      const btnText = submitInquiryBtn.querySelector(".btn-text");
+      const btnLoading = submitInquiryBtn.querySelector(".btn-loading");
+      if (btnText) btnText.style.display = "none";
+      if (btnLoading) btnLoading.style.display = "inline-flex";
+
+      setTimeout(() => {
+        const ticketNum = "Q-" + new Date().getFullYear() + "-" + Math.floor(1000 + Math.random() * 9000);
+        showToast(`문의가 접수되었습니다! (접수번호: ${ticketNum}) 검토 후 이메일로 답변드리겠습니다 🎉`);
+
+        inquiryForm.reset();
+
+        // Reset file upload state
+        if (fileInput) fileInput.value = "";
+        if (filePlaceholder) filePlaceholder.style.display = "flex";
+        if (fileUploadedInfo) fileUploadedInfo.style.display = "none";
+
+        // Reset type chips to first item
+        inquiryChips.forEach((c, idx) => {
+          if (idx === 0) {
+            c.classList.add("selected");
+            const radio = c.querySelector('input[type="radio"]');
+            if (radio) radio.checked = true;
+          } else {
+            c.classList.remove("selected");
+          }
+        });
+
+        // Restore button state
+        submitInquiryBtn.disabled = false;
+        if (btnText) btnText.style.display = "inline-flex";
+        if (btnLoading) btnLoading.style.display = "none";
+
+        // Close Inquiry Modal Popup
+        closeInquiryPopup();
+      }, 700);
+    });
+  }
 }
 
 // Search Filter Logic

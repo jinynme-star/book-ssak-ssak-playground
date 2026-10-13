@@ -1214,6 +1214,696 @@ h1, h2, h3, h4 {
   margin-bottom: 0;
 }
 
+/* 13.5. Inquiry & Helpdesk Section */
+.inquiry-section {
+  background: linear-gradient(180deg, var(--bg-cream) 0%, var(--sand-light) 50%, var(--bg-cream) 100%);
+  position: relative;
+}
+
+.inquiry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 2.5rem;
+  align-items: flex-start;
+  margin-top: 1.5rem;
+}
+
+/* Contact Cards Group */
+.contact-cards-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.contact-card {
+  background: var(--surface-white);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.25rem;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: var(--transition-fast);
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--sand-dark);
+}
+
+.contact-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.contact-card-icon.kakao-icon {
+  background: #FFE812;
+  color: #371D1E;
+}
+
+.contact-card-icon.email-icon {
+  background: var(--accent-coral-light);
+  color: var(--accent-coral);
+}
+
+.contact-card-content h4 {
+  font-size: 1.05rem;
+  color: var(--brown-main);
+  margin-bottom: 0.25rem;
+  font-family: var(--font-family-heading);
+}
+
+.contact-card-content p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.contact-card-content .email-address {
+  font-weight: 600;
+  color: var(--brown-main);
+  word-break: break-all;
+  font-size: 0.875rem;
+}
+
+.response-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  color: #2F6F4E;
+  background: #E8F5EE;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+}
+
+.contact-btn.kakao-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #371D1E;
+  background: #FFE812;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-full);
+  transition: var(--transition-fast);
+  margin-top: 0.25rem;
+}
+
+.contact-btn.kakao-btn:hover {
+  background: #F2DC0D;
+  transform: translateY(-1px);
+}
+
+/* FAQ Accordion */
+.faq-container {
+  background: var(--surface-white);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.faq-header {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.faq-header h3 {
+  font-size: 1.2rem;
+  color: var(--brown-main);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+  font-family: var(--font-family-heading);
+}
+
+.faq-header h3 i {
+  color: var(--accent-coral);
+}
+
+.faq-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.faq-item {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-cream-alt);
+  transition: var(--transition-fast);
+}
+
+.faq-item.active {
+  border-color: var(--sand-dark);
+  background: var(--surface-white);
+  box-shadow: var(--shadow-sm);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--brown-main);
+  transition: var(--transition-fast);
+  cursor: pointer;
+}
+
+.faq-question span {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  line-height: 1.4;
+}
+
+.faq-question span i {
+  color: var(--accent-coral);
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.faq-arrow {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.faq-item.active .faq-arrow {
+  transform: rotate(180deg);
+  color: var(--accent-coral);
+}
+
+.faq-item.active .faq-question {
+  color: var(--brown-dark);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+  padding: 0 1.25rem;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 350px;
+  padding: 0 1.25rem 1.25rem 1.25rem;
+}
+
+.faq-answer p {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  border-top: 1px dashed var(--border-light);
+  padding-top: 0.85rem;
+}
+
+/* Inquiry CTA Card (On-Screen Button Card) */
+.inquiry-cta-card {
+  background: var(--surface-white);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2.5rem;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.inquiry-cta-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--accent-coral) 0%, var(--sand-main) 100%);
+}
+
+.inquiry-cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  background: var(--accent-coral-light);
+  color: var(--accent-coral-dark);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.inquiry-cta-illustration {
+  margin-bottom: 1.5rem;
+}
+
+.cta-circle-icon {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-coral-light) 0%, #FFE2D9 100%);
+  color: var(--accent-coral);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.75rem;
+  box-shadow: 0 10px 25px rgba(255, 119, 76, 0.18);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.inquiry-cta-card:hover .cta-circle-icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.inquiry-cta-title {
+  font-size: 1.6rem;
+  color: var(--brown-main);
+  margin-bottom: 0.75rem;
+  font-family: var(--font-family-heading);
+}
+
+.inquiry-cta-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 1.75rem;
+  max-width: 440px;
+}
+
+.inquiry-cta-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  width: 100%;
+  max-width: 380px;
+  background: var(--bg-cream-alt);
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.cta-feat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.875rem;
+  color: var(--brown-main);
+  font-weight: 500;
+}
+
+.cta-feat-item i {
+  color: #2F6F4E;
+  font-size: 0.85rem;
+}
+
+.inquiry-action-box {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-open-inquiry {
+  width: 100%;
+  padding: 1.1rem 2rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  box-shadow: 0 6px 20px rgba(255, 119, 76, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  transition: var(--transition-normal);
+  cursor: pointer;
+}
+
+.btn-open-inquiry:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 28px rgba(255, 119, 76, 0.45);
+}
+
+.inquiry-action-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.form-card-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: var(--accent-coral-light);
+  color: var(--accent-coral);
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.form-card-header h3 {
+  font-size: 1.45rem;
+  color: var(--brown-main);
+  margin-bottom: 0.35rem;
+  font-family: var(--font-family-heading);
+}
+
+.form-card-header p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.inquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--brown-main);
+  display: block;
+  margin-bottom: 0.45rem;
+}
+
+.required-mark {
+  color: var(--accent-coral);
+  margin-left: 2px;
+}
+
+.optional-mark {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* Inquiry Type Selector */
+.inquiry-type-selector {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+
+.type-chip {
+  position: relative;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  background: var(--bg-cream-alt);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: var(--transition-fast);
+}
+
+.type-chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.type-chip span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.type-chip span i {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  transition: var(--transition-fast);
+}
+
+.type-chip:hover {
+  border-color: var(--sand-dark);
+  background: var(--sand-light);
+}
+
+.type-chip.selected {
+  border-color: var(--accent-coral);
+  background: var(--accent-coral-light);
+  color: var(--accent-coral-dark);
+  box-shadow: 0 0 0 2px rgba(255, 119, 76, 0.15);
+}
+
+.type-chip.selected span i {
+  color: var(--accent-coral);
+}
+
+/* Form Row 2 */
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+  font-family: inherit;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  background: var(--surface-white);
+  transition: var(--transition-fast);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--accent-coral);
+  box-shadow: 0 0 0 3px rgba(255, 119, 76, 0.15);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.6;
+}
+
+/* File Upload Box */
+.file-upload-box {
+  position: relative;
+  border: 2px dashed var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  background: var(--bg-cream-alt);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.file-upload-box:hover {
+  border-color: var(--accent-coral);
+  background: var(--accent-coral-light);
+}
+
+.file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.file-upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  pointer-events: none;
+}
+
+.file-upload-placeholder i {
+  font-size: 1.75rem;
+  color: var(--accent-coral);
+}
+
+.file-upload-placeholder span {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--brown-main);
+}
+
+.file-upload-placeholder small {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.file-uploaded-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  font-size: 0.875rem;
+  color: var(--brown-main);
+  font-weight: 600;
+}
+
+.file-uploaded-info i {
+  color: #2F6F4E;
+  font-size: 1.1rem;
+}
+
+.file-remove-btn {
+  background: var(--sand-light);
+  color: var(--text-muted);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: var(--transition-fast);
+}
+
+.file-remove-btn:hover {
+  background: var(--accent-coral);
+  color: var(--surface-white);
+}
+
+/* Agreement Checkbox */
+.form-agreement {
+  padding-top: 0.25rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent-coral);
+  margin-top: 3px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.agreement-text {
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.agreement-text strong {
+  color: var(--brown-main);
+}
+
+/* Submit Button */
+.btn-submit-inquiry {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 14px rgba(255, 119, 76, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  transition: var(--transition-normal);
+}
+
+.btn-submit-inquiry:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(255, 119, 76, 0.4);
+}
+
+.btn-submit-inquiry:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Modal Form Actions */
+.modal-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.modal-form-actions .btn-outline {
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  padding: 0.85rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: var(--transition-fast);
+}
+
+.modal-form-actions .btn-outline:hover {
+  background: var(--bg-cream);
+  color: var(--brown-main);
+}
+
+.modal-form-actions .btn-submit-inquiry {
+  width: auto;
+  min-width: 170px;
+}
+
+.modal-container.modal-inquiry {
+  max-width: 660px;
+}
+
 /* 14. Newsletter Section */
 .newsletter-section {
   padding: 4rem 0;
@@ -1761,5 +2451,34 @@ h1, h2, h3, h4 {
 
   .modal-detail-header {
     grid-template-columns: 1fr;
+  }
+
+  .inquiry-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .contact-cards-group {
+    grid-template-columns: 1fr;
+  }
+
+  .inquiry-type-selector {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .inquiry-cta-card {
+    padding: 2rem 1.25rem;
+  }
+
+  .modal-container.modal-inquiry {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .faq-container {
+    padding: 1.5rem 1.25rem;
   }
 }
