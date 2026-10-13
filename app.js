@@ -616,15 +616,19 @@ function initEventListeners() {
     }
   });
 
-  // 15. Inquiry Form Submission
+  // 15. Inquiry Form Submission (Connected to Resend API via /api/inquiry)
   const inquiryForm = document.getElementById("inquiryForm");
   const submitInquiryBtn = document.getElementById("submitInquiryBtn");
   if (inquiryForm && submitInquiryBtn) {
-    inquiryForm.addEventListener("submit", (e) => {
+    inquiryForm.addEventListener("submit", async (e) => {
       e.preventDefault();
 
       const name = document.getElementById("inquiryName")?.value.trim();
       const email = document.getElementById("inquiryEmail")?.value.trim();
+      const phone = document.getElementById("inquiryPhone")?.value.trim();
+      const childAge = document.getElementById("inquiryChildAge")?.value;
+      const typeRadio = document.querySelector('input[name="inquiryType"]:checked');
+      const type = typeRadio ? typeRadio.value : "general";
       const title = document.getElementById("inquiryTitle")?.value.trim();
       const message = document.getElementById("inquiryMessage")?.value.trim();
       const agreement = document.getElementById("inquiryAgreement")?.checked;
@@ -646,36 +650,87 @@ function initEventListeners() {
       if (btnText) btnText.style.display = "none";
       if (btnLoading) btnLoading.style.display = "inline-flex";
 
-      setTimeout(() => {
-        const ticketNum = "Q-" + new Date().getFullYear() + "-" + Math.floor(1000 + Math.random() * 9000);
-        showToast(`문의가 접수되었습니다! (접수번호: ${ticketNum}) 검토 후 이메일로 답변드리겠습니다 🎉`);
+      // File attachment processing
+      let attachment = null;
+      if (fileInput && fileInput.files && fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        try {
+          const base64Content = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => {
+              const res = reader.result;
+              const base64 = res.includes(",") ? res.split(",")[1] : res;
+              resolve(base64);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+          });
+          attachment = {
+            filename: file.name,
+            content: base64Content
+          };
+        } catch (err) {
+          console.warn("첨부파일 변환 실패:", err);
+        }
+      }
 
-        inquiryForm.reset();
+      const payload = {
+        name,
+        email,
+        phone,
+        childAge,
+        type,
+        title,
+        message,
+        attachment
+      };
 
-        // Reset file upload state
-        if (fileInput) fileInput.value = "";
-        if (filePlaceholder) filePlaceholder.style.display = "flex";
-        if (fileUploadedInfo) fileUploadedInfo.style.display = "none";
-
-        // Reset type chips to first item
-        inquiryChips.forEach((c, idx) => {
-          if (idx === 0) {
-            c.classList.add("selected");
-            const radio = c.querySelector('input[type="radio"]');
-            if (radio) radio.checked = true;
-          } else {
-            c.classList.remove("selected");
-          }
+      try {
+        const response = await fetch("/api/inquiry", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
         });
 
-        // Restore button state
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          const ticketNum = data.ticket || ("Q-" + new Date().getFullYear() + "-" + Math.floor(1000 + Math.random() * 9000));
+          showToast(`문의가 성공적으로 접수되었습니다! 담당자에게 이메일이 발송되었습니다 🎉 (접수번호: ${ticketNum})`);
+
+          inquiryForm.reset();
+
+          // Reset file upload state
+          if (fileInput) fileInput.value = "";
+          if (filePlaceholder) filePlaceholder.style.display = "flex";
+          if (fileUploadedInfo) fileUploadedInfo.style.display = "none";
+
+          // Reset type chips to first item
+          inquiryChips.forEach((c, idx) => {
+            if (idx === 0) {
+              c.classList.add("selected");
+              const radio = c.querySelector('input[type="radio"]');
+              if (radio) radio.checked = true;
+            } else {
+              c.classList.remove("selected");
+            }
+          });
+
+          // Close Inquiry Modal Popup
+          closeInquiryPopup();
+        } else {
+          showToast(`전송 실패: ${data.error || "이메일 발송 중 오류가 발생했습니다."}`);
+        }
+      } catch (err) {
+        console.error("Inquiry API Error:", err);
+        showToast("문의 서버와 통신할 수 없습니다. 'python server.py'를 실행해 주세요 ⚠️");
+      } finally {
         submitInquiryBtn.disabled = false;
         if (btnText) btnText.style.display = "inline-flex";
         if (btnLoading) btnLoading.style.display = "none";
-
-        // Close Inquiry Modal Popup
-        closeInquiryPopup();
-      }, 700);
+      }
     });
   }
 }
